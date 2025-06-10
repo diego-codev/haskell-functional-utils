@@ -116,18 +116,59 @@ ordenada [c] = True
 -- ex.: picos [2,3,5,10,5,5,6,2,3] [10,6,3]
 
 picos :: Ord t => [t] -> [t]
-picos (c1:c2:c3:r)
-    | c1 > c2 && c1 > (last r) = c1 : picos (c2 : r)
-    | c1 < c2 && c2 > c3 = c2 : picos (c3 : r)
-    | c3 > c1 && c3 > c2 = c3 : picos r
-    |otherwise = picos r
-picos _ = []
- 
+picos l@(c:r) = analizar (ultimo l : l ++ [c] )
+    where
+        analizar (c1:c2:c3:r)
+            | c2 > c1 && c2 > c3 = c2 : analizar (c2:c3:r)
+            | otherwise = analizar (c2:c3:r)
+        analizar _ = []
+
+        ultimo :: [t] -> t
+        ultimo [c] = c
+        ultimo (_:r) = ultimo r
+        
  -- =======================================================================================================
 
 -- Questão 27
-  
-  -- =======================================================================================================
+
+-- todas_maiusculas: Recebe uma string qualquer e retorna outra string onde todas as letras são
+-- maiúsculas. Pode ser útil saber os seguintes códigos de representação de caracteres: a=97,
+-- z=122, A=65, Z=90, 0=48, 9=57, espaço=32.
+-- ex.: todas_maiusculas "abc 123" = "ABC 123"  
+
+todas_maiusculas :: String -> String
+todas_maiusculas [] = []
+todas_maiusculas (c:r) = converte c : todas_maiusculas r
+    where
+        converte 'a' = 'A'
+        converte 'b' = 'B'
+        converte 'c' = 'C'
+        converte 'd' = 'D'
+        converte 'e' = 'E'
+        converte 'f' = 'F'
+        converte 'g' = 'G'
+        converte 'h' = 'H'
+        converte 'i' = 'I'
+        converte 'j' = 'J'
+        converte 'k' = 'K'
+        converte 'l' = 'L'
+        converte 'm' = 'M'
+        converte 'n' = 'N'
+        converte 'o' = 'O'
+        converte 'p' = 'P'
+        converte 'q' = 'Q'
+        converte 'r' = 'R'
+        converte 's' = 'S'
+        converte 't' = 'T'
+        converte 'u' = 'U'
+        converte 'v' = 'V'
+        converte 'w' = 'W'
+        converte 'x' = 'X'
+        converte 'y' = 'Y'
+        converte 'z' = 'Z'
+        converte c   = c
+
+-- =======================================================================================================
 
 -- Questão 30
 
